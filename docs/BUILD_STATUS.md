@@ -1,6 +1,6 @@
-## Vercel deployment failure diagnosis — 2026-10-22
+## Vercel deployment configuration fix — 2026-10-22
 
-The failed production-target deployment `dpl_F5ijzZAEHYevyGYGKdRmtE43cuFP` was inspected directly. Vercel reports error code `STATIC_BUILD_NO_OUT_DIR`: after the Next.js build completed, the project expected a static output directory named `public`. The build log shows Next.js output (including dynamic server-rendered routes and middleware), so the deployment is being treated as a static build / has an incompatible Output Directory setting. This is a Vercel project configuration mismatch, not evidence that the Next.js build itself failed. Correct the Vercel framework/output-directory configuration for Next.js (normally let the Next.js framework preset manage output; do not set `public` as the output directory) in the deployment-fix phase, then create a fresh deployment and verify the resulting URL. No Vercel settings were changed during Phase 00.
+The original deployment failed with `STATIC_BUILD_NO_OUT_DIR` because Vercel expected a static output directory named `public`, incompatible with this Next.js App Router application. The Vercel project configuration has now been corrected: framework is Next.js, custom output directory cleared for automatic detection, and build/install commands reset to automatic detection. A fresh production-target deployment from `aurbta/Cafeos` branch `main`, commit `18925fdde3c5e37c5ac9444e175e8db4e36937e2`, reached **READY**. Build logs confirm Next.js compilation, type/lint validation, generation of 17 static pages, serverless-function creation, and completed output deployment. HTTP smoke checks returned 200 for the landing page and `/login`; `/admin` currently returns 404 (no admin route is implemented at that path). This resolves the Vercel output-directory build failure, but does not mean CafeOS is production-ready; authentication secrets and Phase 02/03 acceptance gates remain separate.
 
 ## Phase 00 target audit — 2026-10-22 (authoritative current snapshot)
 
@@ -10,10 +10,11 @@ Phase 00 is complete for target discovery and read-only environment inventory. T
 - Supabase organization: `Cafeos` (slug `sxecsiglqoqkamwsqldr`); project `Cafeos`, ref `qyozmsrgsvfrhcfkutki`, region `ap-south-1`, status `ACTIVE_HEALTHY`; API URL `https://qyozmsrgsvfrhcfkutki.supabase.co`.
 - Vercel team: `yashgoyal98370-3979's projects`; project `cafeos`, ID `prj_aqO5Zg8kFdSGbq6gawjbsgyQ1ubP`, framework Next.js, configured Node runtime `24.x`. Deployment metadata points to `aurbta/Cafeos` branch `main`.
 - Vercel domains reported: `https://cafeos-yashgoyal98370-3979s-projects.vercel.app` and `https://cafeos-git-main-yashgoyal98370-3979s-projects.vercel.app`.
-- Latest deployment observed: ERROR for commit `a2854c4e84a709a421b7ee0110cc20c57fd32fc3` ("Import CafeOS Phase 00–03 application foundation"). A prior deployment for commit `1233bf8a679866341cf02e896d162b4b4cc6ba23` is READY. The project reports `live: false`; production is not verified as live.
+- The former `STATIC_BUILD_NO_OUT_DIR` deployment failure was resolved by clearing the forced `public` output directory and restoring automatic Next.js output handling.
+- Latest verified production-target deployment: **READY**, commit `18925fdde3c5e37c5ac9444e175e8db4e36937e2`; canonical alias `https://cafeos-peach.vercel.app` returned HTTP 200. `/login` returned HTTP 200. `/admin` returned HTTP 404 and is not an implemented route at that path.
 - Supabase migration history includes Phase 02 and Phase 03 migrations. The inspected public operational tables had RLS enabled and zero business rows in the returned listing.
 - Secret values were not read, printed, or committed. `.env.example` contains variable names with blank values; privileged values must remain server-only.
-- No schema migrations, account provisioning, production releases, or destructive actions were performed during Phase 00.
+- No schema migrations, account provisioning, or destructive database actions were performed as part of this deployment configuration fix.
 
 This snapshot supersedes earlier target references in historical notes below that mention `cafestyle12/Cafe-software-`, the older Supabase ref, or the older preview URL. Use only the resources listed above for subsequent phases.
 
