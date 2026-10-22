@@ -12,14 +12,14 @@ Last audited: 2026-10-22
 - Supabase API URL: `https://qyozmsrgsvfrhcfkutki.supabase.co`
 - Vercel team: `yashgoyal98370-3979's projects`
 - Vercel project: `cafeos` (`prj_aqO5Zg8kFdSGbq6gawjbsgyQ1ubP`)
-- Vercel framework: Next.js; configured Node runtime: `24.x`
+- Vercel framework: Next.js; configured Node runtime: `22.x`
 - Vercel domains reported by the project API:
   - https://cafeos-yashgoyal98370-3979s-projects.vercel.app
   - https://cafeos-git-main-yashgoyal98370-3979s-projects.vercel.app
 
 ## Current deployment state
 
-The latest deployment record observed is ERROR for commit `a2854c4e84a709a421b7ee0110cc20c57fd32fc3`, commit message `Import CafeOS Phase 00–03 application foundation`. A prior deployment for commit `1233bf8a679866341cf02e896d162b4b4cc6ba23` is READY. The exact failure is `STATIC_BUILD_NO_OUT_DIR`: Vercel expects an output directory named `public`, despite the build producing Next.js server-rendered routes and middleware. This strongly indicates a static-build/output-directory configuration mismatch. For the Next.js project, remove the custom `public` output-directory setting and use the Next.js framework preset/default output handling, then redeploy and verify. No Vercel setting was changed during Phase 00. The Vercel project reports `live: false`; therefore the app must not be described as successfully launched. The error must be inspected and corrected in a later implementation/deployment phase. Do not assume the READY deployment contains the current repository head.
+The latest deployment record at the time of the initial audit was ERROR for commit `a2854c4e84a709a421b7ee0110cc20c57fd32fc3`, commit message `Import CafeOS Phase 00–03 application foundation`. After the Phase 00 documentation commits, Vercel created a new deployment for commit `787bfe2df49da18a0b229e5833526974372a9acb`; it was still QUEUED when last inspected, so its final status is not yet known. A prior deployment for commit `1233bf8a679866341cf02e896d162b4b4cc6ba23` is READY. The exact failure is `STATIC_BUILD_NO_OUT_DIR`: Vercel expects an output directory named `public`, despite the build producing Next.js server-rendered routes and middleware. This strongly indicates a static-build/output-directory configuration mismatch. For the Next.js project, remove the custom `public` output-directory setting and use the Next.js framework preset/default output handling, then redeploy and verify. No Vercel setting was changed during Phase 00. The Vercel project reports `live: false`; therefore the app must not be described as successfully launched. The error must be inspected and corrected in a later implementation/deployment phase. Do not assume the READY deployment contains the current repository head.
 
 ## Environment variable inventory
 
