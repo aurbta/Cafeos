@@ -1,3 +1,7 @@
+## Vercel deployment failure diagnosis — 2026-10-22
+
+The failed production-target deployment `dpl_F5ijzZAEHYevyGYGKdRmtE43cuFP` was inspected directly. Vercel reports error code `STATIC_BUILD_NO_OUT_DIR`: after the Next.js build completed, the project expected a static output directory named `public`. The build log shows Next.js output (including dynamic server-rendered routes and middleware), so the deployment is being treated as a static build / has an incompatible Output Directory setting. This is a Vercel project configuration mismatch, not evidence that the Next.js build itself failed. Correct the Vercel framework/output-directory configuration for Next.js (normally let the Next.js framework preset manage output; do not set `public` as the output directory) in the deployment-fix phase, then create a fresh deployment and verify the resulting URL. No Vercel settings were changed during Phase 00.
+
 ## Phase 00 target audit — 2026-10-22 (authoritative current snapshot)
 
 Phase 00 is complete for target discovery and read-only environment inventory. The CafeOS-specific resources selected by the user are:
