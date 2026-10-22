@@ -1,3 +1,18 @@
+## Phase 00 target audit — 2026-10-22 (authoritative current snapshot)
+
+Phase 00 is complete for target discovery and read-only environment inventory. The CafeOS-specific resources selected by the user are:
+
+- GitHub: `aurbta/Cafeos`, default branch `main`.
+- Supabase organization: `Cafeos` (slug `sxecsiglqoqkamwsqldr`); project `Cafeos`, ref `qyozmsrgsvfrhcfkutki`, region `ap-south-1`, status `ACTIVE_HEALTHY`; API URL `https://qyozmsrgsvfrhcfkutki.supabase.co`.
+- Vercel team: `yashgoyal98370-3979's projects`; project `cafeos`, ID `prj_aqO5Zg8kFdSGbq6gawjbsgyQ1ubP`, framework Next.js, configured Node runtime `24.x`. Deployment metadata points to `aurbta/Cafeos` branch `main`.
+- Vercel domains reported: `https://cafeos-yashgoyal98370-3979s-projects.vercel.app` and `https://cafeos-git-main-yashgoyal98370-3979s-projects.vercel.app`.
+- Latest deployment observed: ERROR for commit `a2854c4e84a709a421b7ee0110cc20c57fd32fc3` ("Import CafeOS Phase 00–03 application foundation"). A prior deployment for commit `1233bf8a679866341cf02e896d162b4b4cc6ba23` is READY. The project reports `live: false`; production is not verified as live.
+- Supabase migration history includes Phase 02 and Phase 03 migrations. The inspected public operational tables had RLS enabled and zero business rows in the returned listing.
+- Secret values were not read, printed, or committed. `.env.example` contains variable names with blank values; privileged values must remain server-only.
+- No schema migrations, account provisioning, production releases, or destructive actions were performed during Phase 00.
+
+This snapshot supersedes earlier target references in historical notes below that mention `cafestyle12/Cafe-software-`, the older Supabase ref, or the older preview URL. Use only the resources listed above for subsequent phases.
+
 # CafeOS Build Status
 
 Last updated: 2026-10-22
