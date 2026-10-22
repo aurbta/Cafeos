@@ -7,7 +7,7 @@ Each phase must be independently verified before the next phase begins. Code pre
 - [x] Verify Supabase organization `Cafeos`, project ref `qyozmsrgsvfrhcfkutki`, region `ap-south-1`, health status, API URL, migration history, and visible RLS state.
 - [x] Verify the Vercel team and `cafeos` project, Git repository metadata, framework/runtime, domains, and recent deployment records.
 - [x] Inventory environment-variable names from `.env.example` without exposing or inventing secret values.
-- [x] Record the current deployment failure accurately; do not claim production is live.
+- [x] Record the initial deployment failure and its exact root cause; track the corrective action separately and do not equate a READY build with production acceptance.
 - [x] Update deployment notes to use the CafeOS-named GitHub/Supabase/Vercel resources.
 - [x] Keep Phase 00 read-only: no schema changes, customer data, account provisioning, production configuration changes, or destructive actions.
 - [x] Follow-up deployment fix completed after the read-only Phase 00 audit: reset the incorrect Vercel static output directory to Next.js automatic detection; fresh main-branch build reached READY. Browser and authenticated end-to-end checks remain separate acceptance gates.
