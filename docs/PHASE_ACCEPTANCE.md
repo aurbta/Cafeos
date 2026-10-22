@@ -2,9 +2,15 @@
 
 Each phase must be independently verified before the next phase begins. Code presence alone is not acceptance evidence.
 
-## 00 — Repository and environment audit
-- [x] Inspect connected GitHub, Supabase, Vercel capabilities and existing project state.
-- [x] Record target choices and avoid destructive remote changes.
+## 00 — Repository and environment audit — COMPLETE
+- [x] Select and verify the intended GitHub repository: `aurbta/Cafeos`, default branch `main`.
+- [x] Verify Supabase organization `Cafeos`, project ref `qyozmsrgsvfrhcfkutki`, region `ap-south-1`, health status, API URL, migration history, and visible RLS state.
+- [x] Verify the Vercel team and `cafeos` project, Git repository metadata, framework/runtime, domains, and recent deployment records.
+- [x] Inventory environment-variable names from `.env.example` without exposing or inventing secret values.
+- [x] Record the current deployment failure accurately; do not claim production is live.
+- [x] Update deployment notes to use the CafeOS-named GitHub/Supabase/Vercel resources.
+- [x] Keep Phase 00 read-only: no schema changes, customer data, account provisioning, production configuration changes, or destructive actions.
+- [ ] Inspect and resolve the latest Vercel deployment error in the implementation/deployment phase (not a Phase 00 inventory task).
 
 ## 01 — Architecture and engineering foundation
 - [x] Initial app shell committed to selected repository.
