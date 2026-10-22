@@ -209,3 +209,15 @@ Additional hardening after the earlier status block:
 - Documentation-only follow-up run #533 also completed successfully with the same five checks.
 - Connected Supabase confirms all 12 Phase 03 migrations, including parent-status invariants, are applied. SQL smoke checks confirmed invalid QR tokens return only a generic invalid result, all five operational tables have RLS + FORCE RLS, anonymous direct table reads are denied, and table-session rows are not directly selectable by authenticated clients.
 - **Preview/browser acceptance remains blocked solely by Vercel permissions**: the connected identity received HTTP 403 when attempting to create a Preview deployment for `cafe-software`. Phase 03 is code/CI complete, but cannot be declared end-to-end accepted until an authorized Preview deployment can be created and exercised.
+
+
+## Phase 00 audit refresh — 2026-10-22
+
+Canonical resources have now been identified and verified:
+- GitHub: `aurbta/Cafeos`, branch `main`, source commit `a2854c4e84a709a421b7ee0110cc20c57fd32fc3`.
+- Supabase: organization/project `Cafeos`, project ref `qyozmsrgsvfrhcfkutki`, region `ap-south-1`, healthy status. Phase 02 and Phase 03 migrations are present through `phase_03_parent_status_invariants`; the core public tables inspected have RLS enabled.
+- Vercel: project `cafeos` (`prj_aqO5Zg8kFdSGbq6gawjbsgyQ1ubP`) linked to `aurbta/Cafeos`.
+- Previous Vercel production-target deployment failed with `STATIC_BUILD_NO_OUT_DIR` because project settings forced output directory `public`. The setting has been reset to Next.js automatic output detection; a fresh main-branch deployment is building at https://cafeos-57vbhewcw-yashgoyal98370-3979s-projects.vercel.app. This is not yet confirmed READY.
+- Do not expose secrets in docs or chat. Server-only Supabase secret and platform-admin token configuration remains unverified. Security advisor findings and Phase 02/03 runtime acceptance gates remain open.
+
+Phase 00 is complete as an inventory/configuration audit. It does not mean the app is production-ready or that Phase 02/03 are accepted.
