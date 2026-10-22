@@ -10,7 +10,7 @@ Each phase must be independently verified before the next phase begins. Code pre
 - [x] Record the current deployment failure accurately; do not claim production is live.
 - [x] Update deployment notes to use the CafeOS-named GitHub/Supabase/Vercel resources.
 - [x] Keep Phase 00 read-only: no schema changes, customer data, account provisioning, production configuration changes, or destructive actions.
-- [ ] Inspect and resolve the latest Vercel deployment error in the implementation/deployment phase (not a Phase 00 inventory task).
+- [x] Follow-up deployment fix completed after the read-only Phase 00 audit: reset the incorrect Vercel static output directory to Next.js automatic detection; fresh main-branch build reached READY. Browser and authenticated end-to-end checks remain separate acceptance gates.
 
 ## 01 — Architecture and engineering foundation
 - [x] Initial app shell committed to selected repository.
